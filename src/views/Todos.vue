@@ -62,6 +62,7 @@ export default class Todos extends Vue {
   addTodo() {
     this.todos.push({
       title: this.newTodo,
+      completed: false,
     });
     this.newTodo = '';
   }
