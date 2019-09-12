@@ -61,14 +61,6 @@ export default class Todos extends Vue {
     this.newTodo = '';
   }
 
-  markAsCompleted(todo: TodoItemModel) {
-    todo.completed = true;
-  }
-
-  markAsUncompleted(todo: TodoItemModel) {
-    todo.completed = false;
-  }
-
   @Watch('newTodo')
   onNewTodoChanged(newVal: TodoItemModel, oldVal: TodoItemModel) {
     console.log({newVal, oldVal});

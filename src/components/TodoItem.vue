@@ -11,19 +11,6 @@
       v-model="todo.completed"
       @click="toggleCompleted(todo)"
     />
-    <!--        <button-->
-    <!--          v-if="!todo.completed"-->
-    <!--          title="Mark as completed"-->
-    <!--          @click="markAsCompleted(todo)"-->
-    <!--        >-->
-    <!--          &#10004;-->
-    <!--        </button>-->
-    <!--        <span-->
-    <!--          title="Mark as uncompleted"-->
-    <!--          @click="markAsUncompleted(todo)"-->
-    <!--          v-else-->
-    <!--          >&#10004;</span-->
-    <!--        >-->
   </li>
 </template>
 
