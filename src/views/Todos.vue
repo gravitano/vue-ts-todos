@@ -25,7 +25,11 @@ import {mapGetters, mapState} from 'vuex';
 
 @Component({
   computed: {
-    ...mapGetters(['todos']),
+    ...mapGetters({
+      todos: 'todos',
+      uncompleted: 'uncompletedTodos',
+      todosCount: 'todosCount',
+    }),
   },
   components: {
     TodoItem,
@@ -33,14 +37,6 @@ import {mapGetters, mapState} from 'vuex';
 })
 export default class Todos extends Vue {
   newTodo = '';
-
-  get uncompleted() {
-    return this.todos.filter((todo: TodoItemModel) => !todo.completed);
-  }
-
-  get todosCount() {
-    return this.uncompleted.length;
-  }
 
   addTodo() {
     this.todos.push({

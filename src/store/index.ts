@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import {TodoItemModel} from '@/types';
 
 Vue.use(Vuex);
 
@@ -24,5 +25,8 @@ export default new Vuex.Store({
   actions: {},
   getters: {
     todos: state => state.todos,
+    uncompletedTodos: state =>
+      state.todos.filter((todo: TodoItemModel) => !todo.completed),
+    todosCount: (state, getters) => getters.uncompletedTodos.length,
   },
 });
