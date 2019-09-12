@@ -28,7 +28,12 @@
         <!--        >-->
       </li>
     </ul>
-    <input type="text" v-model="newTodo" @keydown.enter="addTodo" />
+    <input
+      type="text"
+      placeholder="Type new todo and press enter..."
+      v-model="newTodo"
+      @keydown.enter="addTodo"
+    />
   </div>
 </template>
 
