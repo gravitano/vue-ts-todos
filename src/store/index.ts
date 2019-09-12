@@ -26,7 +26,11 @@ export default new Vuex.Store({
       state.todos.push(newTodo);
     },
   },
-  actions: {},
+  actions: {
+    addNewTodo({commit}, newTodo) {
+      commit('addTodo', newTodo);
+    },
+  },
   getters: {
     todos: state => state.todos,
     uncompletedTodos: state =>

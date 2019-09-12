@@ -39,7 +39,7 @@ export default class Todos extends Vue {
   newTodo = '';
 
   addTodo() {
-    this.$store.commit('addTodo', {
+    this.$store.dispatch('addNewTodo', {
       title: this.newTodo,
       completed: false,
     });
