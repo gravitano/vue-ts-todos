@@ -26,15 +26,15 @@ export default <Module<TodosState, RootState>>{
     ],
   },
   mutations: {
-    addTodo(state, newTodo) {
+    addTodo(state, newTodo: TodoItemModel) {
       state.todos.push(newTodo);
     },
-    setNewTodo(state, value) {
+    setNewTodo(state, value: string) {
       state.newTodo = value;
     },
   },
   actions: {
-    addNewTodo({commit}, newTodo) {
+    addNewTodo({commit}, newTodo: TodoItemModel) {
       commit('addTodo', newTodo);
     },
   },
