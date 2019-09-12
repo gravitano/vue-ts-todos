@@ -6,6 +6,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    newTodo: '',
     todos: [
       {
         title: 'Go to store',
@@ -24,6 +25,9 @@ export default new Vuex.Store({
   mutations: {
     addTodo(state, newTodo) {
       state.todos.push(newTodo);
+    },
+    setNewTodo(state, value) {
+      state.newTodo = value;
     },
   },
   actions: {

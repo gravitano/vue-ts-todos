@@ -25,6 +25,7 @@ import {mapGetters, mapState} from 'vuex';
 
 @Component({
   computed: {
+    // ...mapState(['newTodo']), // ini tidak bisa reactive
     ...mapGetters({
       todos: 'todos',
       uncompleted: 'uncompletedTodos',
@@ -36,7 +37,13 @@ import {mapGetters, mapState} from 'vuex';
   },
 })
 export default class Todos extends Vue {
-  newTodo = '';
+  get newTodo() {
+    return this.$store.state.newTodo;
+  }
+
+  set newTodo(value) {
+    this.$store.commit('setNewTodo', value);
+  }
 
   addTodo() {
     this.$store.dispatch('addNewTodo', {
