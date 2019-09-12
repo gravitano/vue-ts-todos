@@ -21,13 +21,11 @@
 import {Vue, Component, Watch} from 'vue-property-decorator';
 import TodoItem from '@/components/TodoItem';
 import {TodoItemModel} from '@/types';
-import {mapState} from 'vuex';
+import {mapGetters, mapState} from 'vuex';
 
 @Component({
   computed: {
-    ...mapState({
-      todos: 'todos',
-    }),
+    ...mapGetters(['todos']),
   },
   components: {
     TodoItem,
