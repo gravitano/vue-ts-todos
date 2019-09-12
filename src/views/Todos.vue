@@ -46,7 +46,7 @@ export default class Todos extends Vue {
   // ref: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#strict-class-initialization
 
   get newTodo() {
-    return this.$store.state.newTodo;
+    return this.$store.getters.newTodo;
   }
 
   set newTodo(value) {
