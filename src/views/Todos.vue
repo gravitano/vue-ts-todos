@@ -22,21 +22,25 @@ import {Vue, Component, Watch} from 'vue-property-decorator';
 import TodoItem from '@/components/TodoItem';
 import {TodoItemModel} from '@/types';
 import {mapGetters, mapState} from 'vuex';
+import {Getter} from 'vuex-class';
 
 @Component({
   computed: {
     // ...mapState(['newTodo']), // ini tidak bisa reactive
-    ...mapGetters({
-      todos: 'todos',
-      uncompleted: 'uncompletedTodos',
-      todosCount: 'todosCount',
-    }),
+    // ...mapGetters({
+    // todos: 'todos',
+    // uncompleted: 'uncompletedTodos',
+    // todosCount: 'todosCount',
+    // }),
   },
   components: {
     TodoItem,
   },
 })
 export default class Todos extends Vue {
+  @Getter('todos') todos!: TodoItemModel[];
+  @Getter('todosCount') todosCount!: number;
+
   get newTodo() {
     return this.$store.state.newTodo;
   }
