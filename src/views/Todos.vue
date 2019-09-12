@@ -1,5 +1,8 @@
 <template>
   <div>
+    <h3>
+      Todos <span v-if="todosCount">({{ todosCount }})</span>
+    </h3>
     <ul>
       <li v-for="todo in todos" :key="todo.title">
         <s v-if="todo.completed">
@@ -58,6 +61,14 @@ export default class Todos extends Vue {
   ];
 
   newTodo = '';
+
+  get uncompleted() {
+    return this.todos.filter(todo => !todo.completed);
+  }
+
+  get todosCount() {
+    return this.uncompleted.length;
+  }
 
   addTodo() {
     this.todos.push({
