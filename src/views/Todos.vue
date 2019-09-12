@@ -28,22 +28,11 @@ import {TodoItemModel} from '@/types';
   },
 })
 export default class Todos extends Vue {
-  todos: TodoItemModel[] = [
-    {
-      title: 'Go to store',
-      completed: true,
-    },
-    {
-      title: 'Go to library',
-      completed: false,
-    },
-    {
-      title: 'Go to school',
-      completed: false,
-    },
-  ];
-
   newTodo = '';
+
+  get todos() {
+    return this.$store.state.todos;
+  }
 
   get uncompleted() {
     return this.todos.filter((todo: TodoItemModel) => !todo.completed);
