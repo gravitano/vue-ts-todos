@@ -17,9 +17,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {Vue, Component, Watch} from 'vue-property-decorator';
 import TodoItem from '@/components/TodoItem';
+import {TodoItemModel} from '@/types';
 
 @Component({
   components: {
@@ -27,7 +28,7 @@ import TodoItem from '@/components/TodoItem';
   },
 })
 export default class Todos extends Vue {
-  todos = [
+  todos: TodoItemModel[] = [
     {
       title: 'Go to store',
       completed: true,
@@ -45,7 +46,7 @@ export default class Todos extends Vue {
   newTodo = '';
 
   get uncompleted() {
-    return this.todos.filter(todo => !todo.completed);
+    return this.todos.filter((todo: TodoItemModel) => !todo.completed);
   }
 
   get todosCount() {
@@ -60,16 +61,16 @@ export default class Todos extends Vue {
     this.newTodo = '';
   }
 
-  markAsCompleted(todo) {
+  markAsCompleted(todo: TodoItemModel) {
     todo.completed = true;
   }
 
-  markAsUncompleted(todo) {
+  markAsUncompleted(todo: TodoItemModel) {
     todo.completed = false;
   }
 
   @Watch('newTodo')
-  onNewTodoChanged(newVal, oldVal) {
+  onNewTodoChanged(newVal: TodoItemModel, oldVal: TodoItemModel) {
     console.log({newVal, oldVal});
   }
 }
