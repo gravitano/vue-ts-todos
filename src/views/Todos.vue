@@ -22,7 +22,7 @@ import {Vue, Component, Watch} from 'vue-property-decorator';
 import TodoItem from '@/components/TodoItem';
 import {TodoItemModel} from '@/types';
 import {mapGetters, mapState} from 'vuex';
-import {Getter} from 'vuex-class';
+import {Action, Getter} from 'vuex-class';
 
 @Component({
   computed: {
@@ -40,6 +40,7 @@ import {Getter} from 'vuex-class';
 export default class Todos extends Vue {
   @Getter('todos') todos!: TodoItemModel[];
   @Getter('todosCount') todosCount!: number;
+  @Action('addNewTodo') saveTodo!: (newTodo: TodoItemModel) => void;
 
   get newTodo() {
     return this.$store.state.newTodo;
@@ -50,7 +51,7 @@ export default class Todos extends Vue {
   }
 
   addTodo() {
-    this.$store.dispatch('addNewTodo', {
+    this.saveTodo({
       title: this.newTodo,
       completed: false,
     });
