@@ -1,5 +1,5 @@
 import {TodoItemModel} from '@/types';
-import {Module} from 'vuex';
+import {ActionTree, GetterTree, Module, MutationTree} from 'vuex';
 import {RootState} from '@/store';
 
 interface TodosState {
@@ -8,7 +8,7 @@ interface TodosState {
 }
 
 export default <Module<TodosState, RootState>>{
-  state: {
+  state: <TodosState>{
     newTodo: '',
     todos: [
       {
@@ -25,24 +25,25 @@ export default <Module<TodosState, RootState>>{
       },
     ],
   },
-  mutations: {
-    addTodo(state, newTodo: TodoItemModel) {
+  mutations: <MutationTree<TodosState>>{
+    addTodo(state: TodosState, newTodo: TodoItemModel) {
       state.todos.push(newTodo);
     },
-    setNewTodo(state, value: string) {
+    setNewTodo(state: TodosState, value: string) {
       state.newTodo = value;
     },
   },
-  actions: {
+  actions: <ActionTree<TodosState, RootState>>{
     addNewTodo({commit}, newTodo: TodoItemModel) {
       commit('addTodo', newTodo);
     },
   },
-  getters: {
-    newTodo: state => state.newTodo,
-    todos: state => state.todos,
-    uncompletedTodos: state =>
+  getters: <GetterTree<TodosState, RootState>>{
+    newTodo: (state: TodosState) => state.newTodo,
+    todos: (state: TodosState) => state.todos,
+    uncompletedTodos: (state: TodosState) =>
       state.todos.filter((todo: TodoItemModel) => !todo.completed),
-    todosCount: (state, getters) => getters.uncompletedTodos.length,
+    todosCount: (state: TodosState, getters: any) =>
+      getters.uncompletedTodos.length,
   },
 };
