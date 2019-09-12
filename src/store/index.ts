@@ -21,7 +21,11 @@ export default new Vuex.Store({
       },
     ],
   },
-  mutations: {},
+  mutations: {
+    addTodo(state, newTodo) {
+      state.todos.push(newTodo);
+    },
+  },
   actions: {},
   getters: {
     todos: state => state.todos,
