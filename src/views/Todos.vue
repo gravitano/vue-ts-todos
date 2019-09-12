@@ -42,6 +42,8 @@ export default class Todos extends Vue {
   @Getter('todosCount') todosCount!: number;
   @Action('addNewTodo') saveTodo!: (newTodo: TodoItemModel) => void;
   @Mutation('setNewTodo') setNewTodo!: (value: string) => void;
+  // note: the "!" symbol is definite assignment assertion modifier [ts feature]
+  // ref: https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-7.html#strict-class-initialization
 
   get newTodo() {
     return this.$store.state.newTodo;
