@@ -21,18 +21,20 @@
 import {Vue, Component, Watch} from 'vue-property-decorator';
 import TodoItem from '@/components/TodoItem';
 import {TodoItemModel} from '@/types';
+import {mapState} from 'vuex';
 
 @Component({
+  computed: {
+    ...mapState({
+      todos: 'todos',
+    }),
+  },
   components: {
     TodoItem,
   },
 })
 export default class Todos extends Vue {
   newTodo = '';
-
-  get todos() {
-    return this.$store.state.todos;
-  }
 
   get uncompleted() {
     return this.todos.filter((todo: TodoItemModel) => !todo.completed);
