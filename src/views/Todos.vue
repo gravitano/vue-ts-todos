@@ -4,32 +4,9 @@
       Todos <span v-if="todosCount">({{ todosCount }})</span>
     </h3>
     <ul>
-      <li v-for="todo in todos" :key="todo.title">
-        <s v-if="todo.completed">
-          {{ todo.title }}
-        </s>
-        <span v-else>
-          {{ todo.title }}
-        </span>
-        <input
-          type="checkbox"
-          v-model="todo.completed"
-          @click="toggleCompleted(todo)"
-        />
-        <!--        <button-->
-        <!--          v-if="!todo.completed"-->
-        <!--          title="Mark as completed"-->
-        <!--          @click="markAsCompleted(todo)"-->
-        <!--        >-->
-        <!--          &#10004;-->
-        <!--        </button>-->
-        <!--        <span-->
-        <!--          title="Mark as uncompleted"-->
-        <!--          @click="markAsUncompleted(todo)"-->
-        <!--          v-else-->
-        <!--          >&#10004;</span-->
-        <!--        >-->
-      </li>
+      <template v-for="todo in todos">
+        <todo-item :todo="todo" :key="todo.title" />
+      </template>
     </ul>
     <input
       type="text"
@@ -42,8 +19,13 @@
 
 <script>
 import {Vue, Component, Watch} from 'vue-property-decorator';
+import TodoItem from '@/components/TodoItem';
 
-@Component
+@Component({
+  components: {
+    TodoItem,
+  },
+})
 export default class Todos extends Vue {
   todos = [
     {
@@ -84,10 +66,6 @@ export default class Todos extends Vue {
 
   markAsUncompleted(todo) {
     todo.completed = false;
-  }
-
-  toggleCompleted(todo) {
-    todo.completed = !todo.completed;
   }
 
   @Watch('newTodo')
