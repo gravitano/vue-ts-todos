@@ -5,6 +5,7 @@
         {{ todo.title }}
       </li>
     </ul>
+    <input type="text" v-model="newTodo" @keydown.enter="addTodo" />
   </div>
 </template>
 
@@ -24,6 +25,15 @@ export default class Todos extends Vue {
       title: 'Go to school',
     },
   ];
+
+  newTodo = '';
+
+  addTodo() {
+    this.todos.push({
+      title: this.newTodo,
+    });
+    this.newTodo = '';
+  }
 }
 </script>
 
