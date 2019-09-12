@@ -1,7 +1,8 @@
 <template>
   <div>
     <h3>
-      Todos <span v-if="todosCount">({{ todosCount }})</span>
+      Todos
+      <span v-if="todosCount">({{ todosCount }})</span>
     </h3>
     <ul>
       <template v-for="todo in todos">
@@ -19,7 +20,7 @@
 
 <script lang="ts">
 import {Vue, Component, Watch} from 'vue-property-decorator';
-import TodoItem from '@/components/TodoItem';
+import TodoItem from '@/components/TodoItem.vue';
 import {TodoItemModel} from '@/types';
 import {mapGetters, mapState} from 'vuex';
 import {Action, Getter, Mutation} from 'vuex-class';
