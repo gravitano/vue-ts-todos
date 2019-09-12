@@ -1,6 +1,13 @@
 import {TodoItemModel} from '@/types';
+import {Module} from 'vuex';
+import {RootState} from '@/store';
 
-export default {
+interface TodosState {
+  newTodo: string;
+  todos: TodoItemModel[];
+}
+
+export default <Module<TodosState, RootState>>{
   state: {
     newTodo: '',
     todos: [
