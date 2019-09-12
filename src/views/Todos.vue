@@ -22,7 +22,7 @@ import {Vue, Component, Watch} from 'vue-property-decorator';
 import TodoItem from '@/components/TodoItem';
 import {TodoItemModel} from '@/types';
 import {mapGetters, mapState} from 'vuex';
-import {Action, Getter} from 'vuex-class';
+import {Action, Getter, Mutation} from 'vuex-class';
 
 @Component({
   computed: {
@@ -41,13 +41,14 @@ export default class Todos extends Vue {
   @Getter('todos') todos!: TodoItemModel[];
   @Getter('todosCount') todosCount!: number;
   @Action('addNewTodo') saveTodo!: (newTodo: TodoItemModel) => void;
+  @Mutation('setNewTodo') setNewTodo!: (value: string) => void;
 
   get newTodo() {
     return this.$store.state.newTodo;
   }
 
   set newTodo(value) {
-    this.$store.commit('setNewTodo', value);
+    this.setNewTodo(value);
   }
 
   addTodo() {
